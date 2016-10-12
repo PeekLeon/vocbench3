@@ -1,15 +1,14 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
-import {AuthServices} from '../auth/authServices';
 import {VocbenchCtx} from '../utils/VocbenchCtx';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-    constructor(private authService: AuthServices, private router: Router) { }
+    constructor(private vbCtx: VocbenchCtx, private router: Router) { }
 
     canActivate() {
-        if (this.authService.isLoggedIn()) {
+        if (this.vbCtx.isLoggedIn()) {
             return true;
         } else {
             this.router.navigate(['/Home']);

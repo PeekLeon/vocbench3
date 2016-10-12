@@ -5,7 +5,7 @@ import {Overlay} from "angular2-modal";
 
 import {VocbenchCtx} from "./utils/VocbenchCtx";
 import {VBEventHandler} from "./utils/VBEventHandler";
-import {AuthServices} from "./auth/authServices";
+import {AuthServices} from "./services/authServices";
 import {ModalServices} from "./widget/modal/modalServices";
 
 import '../assets/styles/style.css';
@@ -29,7 +29,7 @@ export class AppComponent {
      * Returns true if the user is logged (an authentication token is stored)
      */
     private isUserLogged(): boolean {
-        return this.authService.isLoggedIn();
+        return this.vbCtx.isLoggedIn();
     }
 
     /**

@@ -14,7 +14,7 @@ import {ICVModule} from "./icvModule";
 import {ModalModule} from 'angular2-modal';
 import {BootstrapModalModule} from 'angular2-modal/plugins/bootstrap';
 
-import {AuthServices} from "../auth/authServices";
+import {AuthServices} from "../services/authServices";
 
 import {AppComponent} from "../appComponent";
 import {appRouting} from '../appRoutes';
@@ -46,6 +46,7 @@ import {RegistrationComponent} from "../user/registrationComponent";
 import {TestComponent} from "../test/testComponent";
 
 import {ConfigBarComponent} from "../config/configBar/configBarComponent";
+import {LoginComponent} from "../user/loginComponent";
 
 @NgModule({
       imports: [
@@ -89,6 +90,7 @@ import {ConfigBarComponent} from "../config/configBar/configBarComponent";
             TestComponent, //remove???
 
             ConfigBarComponent,
+            LoginComponent
       ],
       bootstrap: [AppComponent],
 })
