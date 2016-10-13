@@ -42,7 +42,7 @@ export class AuthServices {
 
     getUser(): Observable<User> {
         console.log("[AuthServices] getUser");
-        return this.httpMgr.doGet(this.serviceName, "getUser", null, this.oldTypeService, true).map(
+        return this.httpMgr.doGet(this.serviceName, "getUser", null, this.oldTypeService, true, true).map(
             stResp => {
                 return new User(stResp.user, stResp.roles);;
             }

@@ -19,17 +19,16 @@ export class AuthGuard implements CanActivate {
             if the user refresh the page, VocbenchCtx is reinitialized and then userLogged is reset to null.
             Here try to retrieve from server the logged user.
              */
-            console.log("auth guard, no user in vbCtx, calling getUser()..."); 
             return this.authService.getUser().map(
                 user => { //request completed succesfully, set the user in the context and return true
                     this.vbCtx.setLoggedUser(user);
                     return true;
-                },
-                error => { //401 not authorized => there is no logged user
-                    this.router.navigate(['/Home']);
-                    return false;
                 }
-                
+            ).catch( //401 not authorized => there is no logged user
+                error => { 
+                    this.router.navigate(['/Home']);
+                    return Observable.of(false);
+                }
             )
         }
     }
