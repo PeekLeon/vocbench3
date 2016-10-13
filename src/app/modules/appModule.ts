@@ -10,6 +10,7 @@ import {VBModalModule} from "./vbModalModule";
 import {TreeAndListModule} from "./treeAndListModule";
 import {ResourceViewModule} from "./resourceViewModule";
 import {ICVModule} from "./icvModule";
+import {UserModule} from "./userModule";
 
 import {ModalModule} from 'angular2-modal';
 import {BootstrapModalModule} from 'angular2-modal/plugins/bootstrap';
@@ -42,12 +43,8 @@ import {ImportDataComponent} from "../config/dataManagement/importData/importDat
 import {ExportDataComponent} from "../config/dataManagement/exportData/exportDataComponent";
 import {MetadataManagementComponent} from "../config/dataManagement/metadata/metadataManagementComponent";
 import {VocbenchSettingsComponent} from "../settings/vocbenchSettingsComponent";
-import {RegistrationComponent} from "../user/registrationComponent";
 import {TestComponent} from "../test/testComponent";
-
 import {ConfigBarComponent} from "../config/configBar/configBarComponent";
-import {LoginComponent} from "../user/loginComponent";
-import {UserMenuComponent} from "../user/userMenuComponent";
 
 @NgModule({
       imports: [
@@ -55,8 +52,7 @@ import {UserMenuComponent} from "../user/userMenuComponent";
             FormsModule, //check if this is still necessary when declarated component are reduced in favor of more imported modules
 
             SharedModule, VBModalModule, TreeAndListModule, ResourceViewModule,
-
-            ICVModule,
+            UserModule, ICVModule,
 
             STServicesModule,
             appRouting,
@@ -87,12 +83,9 @@ import {UserMenuComponent} from "../user/userMenuComponent";
             ExportDataComponent,
             MetadataManagementComponent,
             VocbenchSettingsComponent,
-            RegistrationComponent,
             TestComponent, //remove???
 
-            ConfigBarComponent,
-            LoginComponent,
-            UserMenuComponent
+            ConfigBarComponent
       ],
       bootstrap: [AppComponent],
 })
