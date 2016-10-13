@@ -47,6 +47,7 @@ import {TestComponent} from "../test/testComponent";
 
 import {ConfigBarComponent} from "../config/configBar/configBarComponent";
 import {LoginComponent} from "../user/loginComponent";
+import {UserMenuComponent} from "../user/userMenuComponent";
 
 @NgModule({
       imports: [
@@ -90,7 +91,8 @@ import {LoginComponent} from "../user/loginComponent";
             TestComponent, //remove???
 
             ConfigBarComponent,
-            LoginComponent
+            LoginComponent,
+            UserMenuComponent
       ],
       bootstrap: [AppComponent],
 })

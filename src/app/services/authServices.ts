@@ -44,7 +44,6 @@ export class AuthServices {
         console.log("[AuthServices] getUser");
         return this.httpMgr.doGet(this.serviceName, "getUser", null, this.oldTypeService, true).map(
             stResp => {
-                console.log("data " + JSON.stringify(stResp));
                 return new User(stResp.user, stResp.roles);;
             }
         );
