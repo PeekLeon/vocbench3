@@ -4,7 +4,7 @@ import {AuthServices} from "../services/authServices";
 import {ModalServices} from "../widget/modal/modalServices";
 import {VocbenchCtx} from "../utils/VocbenchCtx";
 import {VBEventHandler} from "../utils/VBEventHandler";
-import {User} from "./User";
+import {User} from "../utils/User";
 
 @Component({
     selector: "li[user-menu]", //what is this? used to avoid css style breaking (use <li user-menu ...></li>)

@@ -1,7 +1,8 @@
 import {Component} from "@angular/core";
 
 import {VocbenchCtx} from "../utils/VocbenchCtx";
-import {User} from "./User";
+import {UserServices} from "../services/userServices";
+import {User} from "../utils/User";
 
 @Component({
     selector: "user-profile-component",
@@ -12,10 +13,18 @@ export class UserProfileComponent {
 
     private user: User;
     
-    constructor(private vbCtx: VocbenchCtx) {}
+    constructor(private vbCtx: VocbenchCtx, private userService: UserServices) {}
 
     ngOnInit() {
         this.user = this.vbCtx.getLoggedUser();
+    }
+
+    private testAdmin() {
+        this.userService.testRequiredAdmin().subscribe(
+            stResp => {
+                console.log("stResp " + JSON.stringify(stResp));
+            }
+        )
     }
 
 }

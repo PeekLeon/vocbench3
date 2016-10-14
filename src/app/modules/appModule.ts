@@ -15,8 +15,6 @@ import {UserModule} from "./userModule";
 import {ModalModule} from 'angular2-modal';
 import {BootstrapModalModule} from 'angular2-modal/plugins/bootstrap';
 
-import {AuthServices} from "../services/authServices";
-
 import {AppComponent} from "../appComponent";
 import {appRouting} from '../appRoutes';
 
@@ -60,7 +58,6 @@ import {ConfigBarComponent} from "../config/configBar/configBarComponent";
       ],
       //services with application scope
       providers: [
-            AuthServices, //when authorization web services will be implemented, this provider should be moved in stServicesModule
             HttpManager, VocbenchCtx, VBEventHandler, GUARD_PROVIDERS
       ],
       declarations: [

@@ -2,12 +2,12 @@ import {Injectable} from '@angular/core';
 import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {VocbenchCtx} from '../utils/VocbenchCtx';
-import {AuthServices} from '../services/authServices';
+import {UserServices} from '../services/userServices';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-    constructor(private vbCtx: VocbenchCtx, private router: Router, private authService: AuthServices) { }
+    constructor(private vbCtx: VocbenchCtx, private router: Router, private userService: UserServices) { }
 
     //this canActivate return Observable<boolean> since I need to check asynchronously if a user is logged
     canActivate(): Observable<boolean> {
@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
             if the user refresh the page, VocbenchCtx is reinitialized and then userLogged is reset to null.
             Here try to retrieve from server the logged user.
              */
-            return this.authService.getUser().map(
+            return this.userService.getUser().map(
                 user => { //request completed succesfully, set the user in the context and return true
                     this.vbCtx.setLoggedUser(user);
                     return true;

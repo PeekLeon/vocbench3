@@ -295,28 +295,22 @@ export class HttpManager {
      */
     private handleError(err: any, skipErrorAlert?: boolean) {
         console.error(err);
-        /*
-        In case that ST server is not running, error is an object like the following 
-        {
-            "_body": {
-               "isTrusted": true
-            },
-            "status": 0,
-            "ok": false,
-            "statusText": "",
-            "headers": {},
-            "type": 3,
-            "url": null 
-        }
-        handle always this error
+        console.log("JSON.stringify(err)" + JSON.stringify(err));
+        /* 
+        Handle errors in case ST server is down. In this case, the response (err) is an object like the following 
+        { "_body": { "isTrusted": true }, "status": 0, "ok": false,
+          "statusText": "", "headers": {}, "type": 3, "url": null }
         */
-        if (err._body.isTrusted && err.status == 0 && !err.ok && err.statusText == "" && err.type == 3 && err.url == null) {
+        if (err.status == 0 && !err.ok && err.statusText == "" && err.type == 3 && err.url == null) {
             this.modalService.alert("Error",
                 "No SemanticTurkey server found! Please check that a server is listening on "
                 + this.serverhost + ". Semantic Turkey server can be downloaded from here: "
                 + "https://bitbucket.org/art-uniroma2/semantic-turkey/downloads", "error");
-        }
-        if (!skipErrorAlert) {
+        } else if (err.status == 401) {
+            //handle errors in case user did a not authorized requests.
+            //In this case the response (err) body contains an error message
+            this.modalService.alert("Error", err._body, "error");
+        } else if (!skipErrorAlert) {
             this.modalService.alert("Error", err, "error");
         }
         return Observable.throw(err);
