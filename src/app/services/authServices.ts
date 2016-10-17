@@ -19,7 +19,8 @@ export class AuthServices {
         console.log("[AuthServices] login");
         var params: any = {
             username: email,
-            password: password
+            password: password,
+            _spring_security_remember_me: rememberMe
         }
         return this.httpMgr.doPost(this.serviceName, "login", params, this.oldTypeService, true, true).map(
             stResp => {

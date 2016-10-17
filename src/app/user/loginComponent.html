@@ -8,7 +8,7 @@
 	<button class="btn btn-sm btn-primary" style="margin-bottom: 5px;" (click)="login()">Log in</button>
 	<div style="display: flex; align-items: center; margin-bottom: 5px;">
 		Remember me
-		<input type="checkbox" style="margin-left: 3px;" [checked]="rememberMe" (change)="rememberMe=$event.target.checked">
+		<input type="checkbox" style="margin-left: 3px;" name="rememberMe" [(ngModel)]="rememberMe">
 	</div>
 	<a (click)="forgotPassword()" style="cursor: pointer">Forgot password?</a>
 	<a [routerLink]="['/Registration']">Sign up</a>

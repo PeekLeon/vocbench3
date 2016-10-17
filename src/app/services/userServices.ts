@@ -12,20 +12,23 @@ export class UserServices {
     constructor(private httpMgr: HttpManager) {}
 
     /**
-     * Returns the user corrently logged. Raise an error in case no user is logged (401 not authorized)
+     * Returns the user corrently logged. Returns null if no user is logged
      */
     getUser(): Observable<User> {
         console.log("[UserServices] getUser");
         return this.httpMgr.doGet(this.serviceName, "getUser", null, this.oldTypeService, true, true).map(
             stResp => {
-                return new User(stResp.user, stResp.roles);
+                if (stResp.user) {
+                    return new User(stResp.user, stResp.roles);
+                } else {
+                    return null;
+                }
             }
         );
     }
 
     testRequiredAdmin() {
         return this.httpMgr.doGet(this.serviceName, "testRequiredAdmin", null, this.oldTypeService, true);
-        // return this.httpMgr.doGet(this.serviceName, "testRequiredAdmin", null, this.oldTypeService, false);
     }
 
 }

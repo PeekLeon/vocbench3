@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {AuthServices} from "../services/authServices";
+import {UserServices} from "../services/userServices";
 import {ModalServices} from "../widget/modal/modalServices";
 import {VocbenchCtx} from "../utils/VocbenchCtx";
 
@@ -14,8 +15,18 @@ export class LoginComponent {
     private email: string = "admin";
     private password: string = "admin";
     
-    constructor(private router: Router, private authService: AuthServices, private modalService: ModalServices,
-        private vbCtx: VocbenchCtx) {}
+    constructor(private router: Router, private authService: AuthServices, private userService: UserServices,
+        private modalService: ModalServices, private vbCtx: VocbenchCtx) {}
+
+    ngOnInit() {
+        this.userService.getUser().subscribe(
+            user => {
+                if (user) {
+                    this.vbCtx.setLoggedUser(user);
+                }
+            }
+        )
+    }
     
     private login() {
         //here I should do an authentication request to server. In case of success, store the returned token and redirect to project
@@ -24,13 +35,8 @@ export class LoginComponent {
                 if (this.vbCtx.isLoggedIn()) {
                     this.router.navigate(['/Projects']);
                 }
-            },
-            error => {
-                //in case of login error (wrong credentials), status is 401 (avoid alert when error is given by ST down)
-                if (error.status == 401) {
-                    this.modalService.alert("Login failed", "The credentials you have entered are incorrect. Please retry.", "error");
-                }
             }
+            //wrong login is already handled in HttpManager#handleError 
         );
     }
 
