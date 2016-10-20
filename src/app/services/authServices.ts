@@ -18,13 +18,14 @@ export class AuthServices {
     login(email: string, password: string, rememberMe: boolean): Observable<User> {
         console.log("[AuthServices] login");
         var params: any = {
-            username: email,
+            email: email,
             password: password,
             _spring_security_remember_me: rememberMe
         }
         return this.httpMgr.doPost(this.serviceName, "login", params, this.oldTypeService, true, true).map(
             stResp => {
-                var loggedUser: User = new User(stResp.user, stResp.roles);
+                var loggedUser: User = new User(
+                    stResp.user.email, stResp.user.firstName, stResp.user.lastName, stResp.user.roles);
                 this.vbCtx.setLoggedUser(loggedUser); 
                 return loggedUser;
             }

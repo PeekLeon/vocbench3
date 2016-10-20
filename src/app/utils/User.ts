@@ -1,14 +1,26 @@
 export class User {
-    private username: string;
+    private email: string;
+    private firstName: string;
+    private lastName: string
     private roles: string[];
 
-    constructor(username: string, roles: string[]) {
-        this.username = username;
+    constructor(email: string, firstName, lastName, roles: string[]) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.roles = roles;
     }
 
-    getUsername(): string {
-        return this.username;
+    getEmail(): string {
+        return this.email;
+    }
+
+    getFirstName(): string {
+        return this.firstName;
+    }
+
+    getLastName(): string {
+        return this.lastName;
     }
 
     listRoles(): string[] {

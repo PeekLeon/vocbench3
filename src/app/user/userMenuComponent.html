@@ -3,10 +3,10 @@
 </a>
 <ul class="dropdown-menu" style="font-size: 12px;">
 	<li>
-		<div style="padding: 10px;">
+		<div style="padding: 10px; white-space: nowrap;">
 			<img src="../../assets/images/logos/user.svg" style="border-radius: 10px;" height="48" width="48">
 			<!--<span style="font-weight:bold">User name</span>-->
-			<span style="font-weight:bold">{{currentUser.getUsername()}}</span>
+			<span style="font-weight: bold; white-space: nowrap;">{{currentUser.getFirstName()}} {{currentUser.getLastName()}}</span>
 		</div>
 	</li>
 	<li role="separator" class="divider"></li>

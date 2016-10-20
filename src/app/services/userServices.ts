@@ -19,12 +19,23 @@ export class UserServices {
         return this.httpMgr.doGet(this.serviceName, "getUser", null, this.oldTypeService, true, true).map(
             stResp => {
                 if (stResp.user) {
-                    return new User(stResp.user, stResp.roles);
+                    return new User(stResp.user.email, stResp.user.firstName, stResp.user.lastName, stResp.user.roles);
                 } else {
                     return null;
                 }
             }
         );
+    }
+
+    registerUser(email: string, password: string, firstName: string, lastName: string) {
+        console.log("[UserServices] registerUser");
+        var params: any = {
+            email: email,
+            password: password,
+            firstName: firstName,
+            lastName: lastName
+        }
+        return this.httpMgr.doPost(this.serviceName, "registerUser", params, this.oldTypeService, true);
     }
 
     testRequiredAdmin() {
