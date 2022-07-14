@@ -28,7 +28,7 @@
     "@ng-bootstrap/ng-bootstrap": "8.0.0",
     "@ngx-translate/core": "13.0.0",
     "@ngx-translate/http-loader": "6.0.0",
-    "angular-ng-autocomplete": "2.0.1",
+    "angular-ng-autocomplete": "2.0.8",
     "bootstrap": "4.6.0",
     "codemirror": "5.17.0",
     "d3": "5.9.2",
